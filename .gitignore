@@ -1,0 +1,5 @@
+test.py
+folder_test/
+__pycache__/
+.pytest_cache
+chromedriver.exe
