@@ -1,6 +1,4 @@
 import pytest
-import random
-import string
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,11 +12,6 @@ def driver():
     driver = webdriver.Chrome(options=options)
     yield driver
     driver.quit()
-
-@pytest.fixture
-def random_email():
-    random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-    return f"{random_string}@gmail.com"
 
 # Вспомогательная фикстура для логина (чтобы не дублировать код в тестах объявления и logout)
 @pytest.fixture

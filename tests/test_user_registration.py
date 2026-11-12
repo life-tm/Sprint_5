@@ -2,9 +2,10 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import MainPageLocators, AuthLocators
+from helpers import generate_random_email
 
 class TestUserRegistration:
-    def test_successful_registration(self, driver, random_email):
+    def test_successful_registration(self, driver):
         driver.get("https://qa-desk.education-services.ru/")
         
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(MainPageLocators.LOGIN_REG_BUTTON)).click()
@@ -12,7 +13,7 @@ class TestUserRegistration:
         
         # Ожидаем появления полей ввода
         email_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(AuthLocators.EMAIL_INPUT))
-        email_field.send_keys(random_email)
+        email_field.send_keys(generate_random_email())
         
         password_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(AuthLocators.PASSWORD_INPUT))
         password_field.send_keys("ValidPassword123")
